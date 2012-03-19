@@ -1,15 +1,16 @@
-default: &default
-  address: 'smtp.gmail.com'
-  port: 587
-  domain: 'railsbp.com'
-  authentication: 'plain'
+production:
+  default: &default
+    address: 'smtp.gmail.com'
+    port: 587
+    domain: 'railsbp.com'
+    authentication: 'plain'
 
-notification:
-  <<: *default
-  user_name: 'notification@railsbp.com'
-  password: 'password'
+  notification:
+    <<: *default
+    user_name: 'notification@railsbp.com'
+    password: 'password'
 
-exception.notifier:
-  <<: *default
-  user_name: 'exception.notifier@railsbp.com'
-  password: 'password'
+  exception.notifier:
+    <<: *default
+    user_name: 'exception.notifier@railsbp.com'
+    password: 'password'

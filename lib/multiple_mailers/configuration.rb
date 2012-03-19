@@ -4,7 +4,7 @@ module MultipleMailers
   class Configuration
     class <<self
       def load
-        @configurations ||= YAML.load_file(Rails.root.join("config/mailers.yml"))
+        @configurations ||= YAML.load_file(Rails.root.join("config/mailers.yml"))[Rails.env]
       end
 
       def get(name)

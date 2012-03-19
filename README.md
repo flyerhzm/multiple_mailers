@@ -20,21 +20,22 @@ Or install it yourself as:
 
 define your smtp mailer accounts in `config/mailers.yml`
 
-    default: &default
-      address: 'smtp.gmail.com'
-      port: 587
-      domain: 'railsbp.com'
-      authentication: 'plain'
+    production:
+      default: &default
+        address: 'smtp.gmail.com'
+        port: 587
+        domain: 'railsbp.com'
+        authentication: 'plain'
 
-    notification:
-      <<: *default
-      user_name: 'notification@railsbp.com'
-      password: 'password'
+      notification:
+        <<: *default
+        user_name: 'notification@railsbp.com'
+        password: 'password'
 
-    exception.notifier:
-      <<: *default
-      user_name: 'exception.notifier@railsbp.com'
-      password: 'password'
+      exception.notifier:
+        <<: *default
+        user_name: 'exception.notifier@railsbp.com'
+        password: 'password'
 
 the default account is used for all mailer classes, if you want to
 override it, you can define mailer account for any mailer class you
