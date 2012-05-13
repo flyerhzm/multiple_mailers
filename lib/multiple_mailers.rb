@@ -14,7 +14,7 @@ module MultipleMailers
   end
 
   if defined? Rails::Railtie
-    class BulletRailtie < Rails::Railtie
+    class MultipleMailersRailtie < Rails::Railtie
       initializer "multiple_mailers.configure_rails_initialization" do |app|
         ActionMailer::Base.send(:include, MultipleMailers)
       end
