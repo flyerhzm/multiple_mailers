@@ -10,7 +10,7 @@ module MultipleMailers
       private
 
       def configuration
-        @configuration ||= YAML.load_file(Rails.root.join("config/mailers.yml"))[Rails.env]
+        @configuration ||= YAML.load_file(Rails.root.join("config/mailers.yml"))[Rails.env] || {}
       end
     end
   end
