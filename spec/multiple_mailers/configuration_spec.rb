@@ -2,34 +2,61 @@ require 'spec_helper'
 
 module MultipleMailers
   describe Configuration do
-    context ".load" do
-      it "should read config/mailers.yml" do
-        Configuration.load
-        Configuration.instance_variable_get(:@configurations).should_not be_empty
+    describe ".get" do
+      context "notification" do
+        let(:config) { Configuration.get("notification") }
+
+        it "gets address with smtp.gmail.com" do
+          expect(config["address"]).to eq "smtp.gmail.com"
+        end
+
+        it "get port with 587" do
+          expect(config["port"]).to eq 587
+        end
+
+        it "gets domain with railsbp.com" do
+          expect(config["domain"]).to eq "railsbp.com"
+        end
+
+        it "gets authentication with plain" do
+          expect(config["authentication"]).to eq "plain"
+        end
+
+        it "gets user_name with notification@railsbp.com" do
+          expect(config["user_name"]).to eq "notification@railsbp.com"
+        end
+
+        it "gets password with password" do
+          expect(config["password"]).to eq "password"
+        end
       end
-    end
 
-    context ".get" do
-      before { Configuration.load }
+      context "exception_notifier" do
+        let(:config) { Configuration.get("exception.notifier") }
 
-      it "should get configuration for notification" do
-        config = Configuration.get("notification")
-        config["address"].should == "smtp.gmail.com"
-        config["port"].should == 587
-        config["domain"].should == "railsbp.com"
-        config["authentication"].should == "plain"
-        config["user_name"].should == "notification@railsbp.com"
-        config["password"].should == "password"
-      end
+        it "gets address with smtp.gmail.com" do
+          expect(config["address"]).to eq "smtp.gmail.com"
+        end
 
-      it "should get configuration for exception_notifier" do
-        config = Configuration.get("exception.notifier")
-        config["address"].should == "smtp.gmail.com"
-        config["port"].should == 587
-        config["domain"].should == "railsbp.com"
-        config["authentication"].should == "plain"
-        config["user_name"].should == "exception.notifier@railsbp.com"
-        config["password"].should == "password"
+        it "get port with 587" do
+          expect(config["port"]).to eq 587
+        end
+
+        it "gets domain with railsbp.com" do
+          expect(config["domain"]).to eq "railsbp.com"
+        end
+
+        it "gets authentication with plain" do
+          expect(config["authentication"]).to eq "plain"
+        end
+
+        it "gets user_name with exception.notifier@railsbp.com" do
+          expect(config["user_name"]).to eq "exception.notifier@railsbp.com"
+        end
+
+        it "gets password with password" do
+          expect(config["password"]).to eq "password"
+        end
       end
     end
   end

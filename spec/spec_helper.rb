@@ -11,3 +11,5 @@ class Rails
 end
 
 require 'multiple_mailers'
+
+ActionMailer::Base.send(:include, MultipleMailers)
